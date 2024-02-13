@@ -1,0 +1,267 @@
+// // Q1: Given string, reverse each word in the sentense
+// // I/P: This is javascript file
+// // O/P: This is javascript file
+// function reverseString() {
+//   let str = "this is javascript file";
+//   let splitStr = str.split(" ").map((e) => {
+//     return e.split("").reverse().join("");
+//   });
+
+//   let res = splitStr.join(" ");
+//   console.log(res);
+// }
+// reverseString();
+
+// // ******************************************************************************************
+// // Q2: How to check object is an array or not?
+// function checkIsArray() {
+//   let arr = [];
+//   let res = Array.isArray(arr);
+//   console.log(res);
+// }
+// checkIsArray();
+
+// // ******************************************************************************************
+// // Q3: Check number is integer?
+// function checkIsNumber() {
+//   let num = 2.0;
+//   let res = Number.isInteger(num); //Sol 1
+//   // let res = num % 1 === 0 ? true : false; //Sol 2
+//   console.log(res);
+// }
+// checkIsNumber();
+
+// // ******************************************************************************************
+// // Q4: Duplicate an array
+// // I/P: duplicate([1, 2, 3, 4, 5]) => [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+// function duplicateArray() {
+//   let arr = [1, 2, 3, 4, 5];
+//   let res = arr.concat(arr); //Sol-1 It will not reflect original array
+//   console.log(res);
+
+//   // arr.push(...arr); //Sol-2 It will change original array
+// }
+// duplicateArray();
+
+// // ******************************************************************************************
+// // Q5: Reverse number ?
+// function reverseNumber() {
+//   let num = 12345;
+//   let res = num.toString().split("").reverse().join("");
+//   console.log(res);
+// }
+// reverseNumber();
+
+// // ******************************************************************************************
+// // Q6: Write JS function that returns a passed string with letters in alphabetical order
+// function alphabeticalOrder() {
+//   let str = "javascript";
+//   let res = str.split("").sort().join("");
+//   console.log(res);
+// }
+
+// alphabeticalOrder();
+
+// // ******************************************************************************************
+// // Q7: Capitalise each starting word of string ?
+// // I/P: this is javascript file
+// // O/P: This Is Javascript File
+// function capitaliseString() {
+//   let str = "this is javascript file";
+//   let res = str
+//     .split(" ")
+//     .map((word) => {
+//       return word.charAt(0).toUpperCase() + word.substring(1);
+//     })
+//     .join(" ");
+//   console.log(res);
+// }
+// capitaliseString();
+
+// // ******************************************************************************************
+// // Q8: Write javasript function to get number of occurences of each letter in specified string
+// // The in operator will check if the property is present, either directly in an object or in its prototype chain;
+// // whereas, the hasOwnProperty() method only checks if the property is directly present in the object.
+// function countOccurences() {
+//   let str = "javascript";
+//   let obj = {};
+//   str.split("").forEach((e) => {
+//     // obj.hasOwnProperty(e)  we can use this method to check key in object
+//     if (e in obj) {
+//       obj[e] += 1;
+//     } else {
+//       obj[e] = 1;
+//     }
+//   });
+//   console.log(obj);
+// }
+// function countOccurences(str) {
+//   const charCount = {};
+//   for(let char of str){
+//     charCount[char] = (charCount[char] || 0) + 1;
+//   }
+//   console.log(charCount)
+// }
+// countOccurences('javascript');
+
+// // ******************************************************************************************
+// // Q9: Filter the list of user based on gender
+// function filterList() {
+//   const users = [
+//     { name: "Ritesh", gender: "male" },
+//     { name: "Sameer", gender: "male" },
+//     { name: "Deepika", gender: "female" },
+//     { name: "Sagar", gender: "male" },
+//     { name: "Ruchi", gender: "female" },
+//   ];
+//   let res = users.filter((user) => user.gender === "male");
+//   console.log(res);
+// }
+// filterList();
+
+// // ******************************************************************************************
+// // Q10: Write promise and always print console if there is promise resolve or reject.
+// let test = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("Done");
+//   }, 2000);
+// });
+
+// test
+//   .then(
+//     (success) => {
+//       console.log("inside success");
+//     },
+//     (error) => {
+//       console.log("inside error");
+//     }
+//   )
+//   .finally(() => console.log("Inside finally")); //finally block always run in promise.
+
+// ******************************************************************************************
+// // Q11: Sort array
+// function sortArray() {
+//   let arr = [23, 4, 5, 12, 1, 6, 34];
+//   // let res = arr.sort(); //Its consider number as string like '23'
+//   let asce = arr.sort((a, b) => a - b); //ascending array
+//   // let desc = arr.sort((a, b) => b - a);  //descending array
+//   console.log(asce);
+// }
+// sortArray();
+
+// // ******************************************************************************************
+// // Q12: Make unique numbers of array from given array
+
+// function uniqueArray() {
+//   let arr = [1, 2, 3, 4, 4, 33, 5, 1, 5];
+//   let res = new Set(arr);
+//   res = [...res];
+//   console.log(res);
+// }
+// uniqueArray();
+
+// // ******************************************************************************************
+// // Q13: How To find duplicate elements in array in javascript?
+// function findDuplicate(arr) {
+//   const res =  arr.filter((ele, index, arr) => arr.indexOf(ele) !== index)
+//   console.log(res)
+// }
+// let arr = [1, 2, 3, 4, 4, 33, 5, 1, 5];
+// findDuplicate(arr)
+
+// // ******************************************************************************************
+// // Q14: Write a JavaScript program to find the maximum number in an array.
+// function findMax(arr) {
+//   const res = arr.sort((a, b) => a - b)[arr.length - 1];
+//   // const res = Math.max(...arr); //Another solution
+//   console.log(res);
+// }
+// let arr = [1, 2, 3, 4, 4, 33, 5, 1, 5];
+// findMax(arr);
+
+// // ******************************************************************************************
+// // Q15: Write a function that finds the longest word in a sentence.
+// function findLongestString(sentence) {
+//   let arr = sentence.split(" ");
+//   return arr.reduce((acc, next) => {
+//     if (acc.length > next.length) {
+//       return acc;
+//     } else {
+//       return next;
+//     }
+//   });
+// }
+// let str = "The quick brown fox jumps over the lazy colordog";
+// console.log(findLongestString(str));
+
+// // ******************************************************************************************
+// // Q16: Write a function that that flatten array and sort array withput inbuilt function with only one for loop
+// let res = [];
+// function flattenArray(arr, depth = 1) {
+//   arr.forEach((a) => {
+//     if (Array.isArray(a)) {
+//       flattenArray(a, -1);
+//     } else {
+//       let max = [],
+//         min = [];
+//       res.push(a);
+//       min = res.filter((f) => f < a);
+//       max = res.filter((f) => f > a);
+//       min.push(a);
+//       res = [...min, ...max];
+//     }
+//   });
+// }
+
+// let arr = [
+//   [10, 4, 5, [1, 12]],
+//   [2, 6, 7],
+//   [3, 8, 9],
+// ];
+// flattenArray(arr);
+// console.log(res);
+
+// // ******************************************************************************************
+// // Q17: Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+// The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+// You must write an algorithm that runs in O(n) time and without using the division operation.
+// Example 1:
+// Input: nums = [1,2,3,4]
+// Output: [24,12,8,6]
+// function reduceArr(arr) {
+//   return arr.reduce((total, accum) => total * accum);
+// }
+// let res = [];
+// function sample(arr) {
+//   arr.map((a, index) => {
+//     let filteredArr = arr.filter((f, filterIndex) => filterIndex !== index);
+//     res.push(reduceArr(filteredArr));
+//   });
+// }
+
+// sample([4, 3, 2, 1, 2]);
+// console.log(res);
+
+// // ******************************************************************************************
+// // Q18: Sort array using quick sort
+// const arr = [6, 1, 5, 3, 9, 6, 7, 10, 16, 4, 0, 12, 2];
+
+// function qsort(arr) {
+//   if (arr.length < 2) return arr;
+//   // choose a pivot, p
+//   // the choice of pivot can effect worst-case performance
+//   // for this, we'll just use the first element.
+//   const [p, ...rest] = arr;
+
+//   // partition array into element greater and lesser that the pivot
+//   // this can be optimized so you don't loop through the array twice
+//   const low = rest.filter((n) => n <= p);
+//   const high = rest.filter((n) => n > p);
+
+//   // recurse on both partitions and reassemble as recursion unwinds
+//   return [...qsort(low), p, ...qsort(high)];
+// }
+// console.log(qsort(arr).join(", "));
+
+// // ******************************************************************************************
