@@ -360,7 +360,7 @@
 
 // // ******************************************************************************************
 
-// // Q22: Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k 
+// // Q22: Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k
 // // and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
 // // Example 1:
 // // Input: nums = [1,2,3,4,5]
@@ -375,11 +375,11 @@
 // function increasingTriplet(nums) {
 //   for(let i = 0, j = 1, k = 2; k < nums.length; i++, j++, k++) {
 //       if(nums[i] < nums[j] && nums[j] < nums[k]) {
-//           return true 
+//           return true
 //           break;
 //       } else {
 //           if(k === nums.length-1)
-//           return false 
+//           return false
 //       }
 //   }
 // }
@@ -413,3 +413,215 @@
 
 // // ******************************************************************************************
 
+// // Q24: Check the parenthisis string is valid or not
+// // Example 1:
+// // Input: str = '[(){}]'
+// // Output: Valid
+
+// // Example 2:
+// // Input: str = '[(){}(){]}'
+// // Output: Invalid
+
+// // Example 3:
+// // Input: str = '{[(){}]{}()}'
+// // Output: Valid
+
+// // Pattern: Stack
+// // Explanation:
+
+// function isValidParenthisis(str) {
+//   let stack = [];
+//   let obj = {
+//     '}': '{',
+//     ']': '[',
+//     ')': '('
+//   };
+
+//   for(let i=0; i< str.length; i++) {
+//     console.log(str[i])
+//     if(obj[str[i]]) {
+//       if(obj[str[i]] !== stack[stack.length - 1]) {
+//         return false
+//       } else {
+//         stack.pop();
+//       }
+//     } else {
+//       stack.push(str[i]);
+//     }
+//   }
+//   if(!stack.length) return true;
+// }
+
+// let s = '[{}()[[]]]'
+// let res = isValidParenthisis(s)
+// console.log('Valid string: ', res);
+
+// // ******************************************************************************************
+
+// // Q25: Find two indices such that their values add up to the target
+// // Example 1:
+// // Input: nums = [2, 7, 11, 15]  target = 9
+// // Output: [0, 1]
+// // Pattern: Hashing
+// // Explanation: We can also use double for loop but it time consuming so we will use hashing.
+
+// function twoSum(arr, targetValue) {
+//   let mapData = new Map();
+
+//   for(let i = 0; i < arr.length; i++) {
+//     let diff = targetValue - arr[i];
+
+//     if(mapData.has(diff)) {
+//       return [mapData.get(diff), i];
+//     }
+//     mapData.set(arr[i], i);
+//     console.log(mapData)
+//   }
+// }
+
+// let inputArr = [2, 8, 5, 11, 7]
+// let target = 16;
+// let res = twoSum(inputArr, target)
+// console.log('Response', res);
+
+// // ******************************************************************************************
+
+// // Q26: Check the strings are anagram
+// // Example 1:
+// // Input: str1 = 'anagram' str2 = 'nagaram'
+// // Output: true
+
+// // Example 2:
+// // Input: str1 = 'cat' str2 = 'tar'
+// // Output: false
+// // Pattern: Hashing
+// // Explanation: Two strings are anagrams if: Same characters + Same frequency
+
+// function isAnagram(string1, string2) {
+//   let mapData = new Map();
+
+//   if(string1.length !== string2.length) return false;
+
+//   for(let char of string1) {
+//     mapData[char] = (mapData[char] || 0) + 1;
+//   }
+
+//   console.log(mapData);
+
+//   for(let char of string2) {
+//     if(!mapData[char]) return false;
+
+//     mapData[char]--;
+//   }
+//   return true;
+// }
+
+// let str1 = 'anagram', str2 = 'nagaram';
+// let res = isAnagram(str1, str2);
+// console.log('Is Anagram', res)
+
+// // ******************************************************************************************
+
+// // Q27: Given a string, find the length of the longest substring that has no repeating characters.
+// // Example 1:
+// // Input: str = 'abcabcbb'
+// // Output: 3 (the substring "abc")
+
+// // Example 2:
+// // Input: str = 'pwwkewabcde'
+// // Output: 7 (the substring "kewabcd")
+// // Pattern: Sliding window(Ex. substring, longest)
+// // Explanation: We are directly removing the duplicate str from Set if it already exits
+//
+// function longestSubstring(str) {
+//   let set = new Set();
+//   let left = 0, maxLength = 0;
+
+//   for(let right = 0 ; right < str.length; right++) {
+//     while(set.has(str[right])) {
+//       set.delete(str[left]);
+//       left++;
+//     }
+//     set.add(str[right])
+//     maxLength = Math.max(maxLength, right - left + 1);
+//     console.log(set)
+//   }
+//   return maxLength;
+// }
+
+// let str = 'pwwkewabcde'
+// let res = longestSubstring(str);
+// console.log('Longest string length', res);
+
+// ******************************************************************************************
+
+// // Q28: Find the length of the longest substring where all characters are the same after at most k replacements.
+// // Example 1:
+// // Input: s = "AABABBA", k = 1
+// // Output: 4
+// // Pattern: Sliding window(Ex. substring, longest)
+// // Explanation:
+// function characterReplacement(s, k) {
+//   let count = {};      // frequency map
+//   let left = 0;
+//   let maxCount = 0;    // count of most frequent char
+//   let maxLength = 0;
+
+//   for (let right = 0; right < s.length; right++) {
+//     const char = s[right];
+
+//     // 1️⃣ Increase frequency
+//     count[char] = (count[char] || 0) + 1;
+
+//     // 2️⃣ Track most frequent char
+//     maxCount = Math.max(maxCount, count[char]);
+
+//     // 3️⃣ Check if window is invalid
+//     while ((right - left + 1) - maxCount > k) {
+//       count[s[left]]--;
+//       left++;
+//     }
+
+//     // 4️⃣ Update result
+//     maxLength = Math.max(maxLength, right - left + 1);
+//   }
+
+//   return maxLength;
+// }
+
+// let str = 'AABABBA', k = 1;
+// let res = characterReplacement(str, k)
+// console.log('res', res)
+
+// ******************************************************************************************
+
+// // Q29: Given two strings s1 and s2, return true if s2 contains a permutation of s1, otherwise return false.
+// // Example 1:
+// // Input: str1 = "ab", str2 = "eidbaooo"
+// // Output: true
+// // Explanation: Substring "ba" is a permutation of "ab".
+
+// // Example 2:
+// // Input: str1 = "ab", str2 = "eidboaoo"
+// // Output: false
+// // Pattern: Sliding window(Ex. substring, longest)
+function checkPermutation(str1, str2) {
+  let strLength = str1.length;
+
+  for (let i = strLength; i < str2.length; i++) {
+    if (str2[i] === str1[0]) {
+      for (let j = 1; j < str1.length; j++) {
+        i--;
+        if (str1[j] !== str2[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+}
+
+let s1 = "abcde",
+  s2 = "eidcddedcbaoaoo";
+let res = checkPermutation(s1, s2);
+console.log("Permutation is: ", res);
